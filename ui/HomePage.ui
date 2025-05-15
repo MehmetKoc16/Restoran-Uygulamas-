@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AnaEkran</class>
+ <widget class="QMainWindow" name="AnaEkran">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>🍽 Restoran Otomasyonu</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="baslikLabel">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Restoranımıza Hoş Geldiniz</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FFE0B2, stop:1 #FFCC80);
+border-radius: 15px;
+border: 2px solid #FFA726;
+</string>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>778</width>
+         <height>499</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="masaGridLayout">
+        <property name="leftMargin">
+         <number>20</number>
+        </property>
+        <property name="topMargin">
+         <number>20</number>
+        </property>
+        <property name="rightMargin">
+         <number>20</number>
+        </property>
+        <property name="bottomMargin">
+         <number>20</number>
+        </property>
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="masaButon1">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 1 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="masaButon2">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 2 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="masaButon3">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 3 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QPushButton" name="masaButon4">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 4 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="masaButon5">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 5 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="masaButon6">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 6 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="masaButon7">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 7 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QPushButton" name="masaButon8">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 8 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="masaButon9">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 9 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="masaButon10">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 10 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="masaButon11">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 11 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QPushButton" name="masaButon12">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 12 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="masaButon13">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 13 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="masaButon14">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 14 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QPushButton" name="masaButon15">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+          </property>
+          <property name="text">
+           <string>Masa 15 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QPushButton" name="masaButon16">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Masa 16 (Boş)</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

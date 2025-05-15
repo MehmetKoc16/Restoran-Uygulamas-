@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MasaSayfasi</class>
+ <widget class="QWidget" name="MasaSayfasi">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Masa {masa_numarasi} Sipariş Ekranı</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FFE0B2, stop:1 #FFCC80);
+border-radius: 15px;
+border: 2px solid #FFA726;</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_menu">
+     <item>
+      <widget class="QLabel" name="label_kategori">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 150);
+border: 1px solid rgba(0, 0, 0, 0);
+border-bottom: 2px solid #FFA000;
+color: #5D4037;
+padding-bottom: 7px;
+border-radius: 4px;</string>
+       </property>
+       <property name="text">
+        <string>Kategori Seçin:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="kategori_secim">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 150);
+border: 1px solid rgba(0, 0, 0, 0);
+border-bottom: 2px solid #FFA000;
+color: #5D4037;
+padding-bottom: 7px;
+border-radius: 4px;</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>🍔 Yiyecekler</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>🥤 İçecekler</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>🍰 Tatlılar</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_urun">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 150);
+border: 1px solid rgba(0, 0, 0, 0);
+border-bottom: 2px solid #FFA000;
+color: #5D4037;
+padding-bottom: 7px;
+border-radius: 4px;</string>
+       </property>
+       <property name="text">
+        <string>Ürün Seçin:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="urun_secim">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 150);
+border: 1px solid rgba(0, 0, 0, 0);
+border-bottom: 2px solid #FFA000;
+color: #5D4037;
+padding-bottom: 7px;
+border-radius: 4px;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_siparis">
+     <item>
+      <widget class="QLabel" name="label_siparisler">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 150);
+border: 1px solid rgba(0, 0, 0, 0);
+border-bottom: 2px solid #FFA000;
+color: #5D4037;
+padding-bottom: 7px;
+border-radius: 4px;</string>
+       </property>
+       <property name="text">
+        <string>Siparişler:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QListWidget" name="siparis_listesi">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 150);
+border: 1px solid rgba(0, 0, 0, 0);
+border-bottom: 2px solid #FFA000;
+color: #5D4037;
+padding-bottom: 7px;
+border-radius: 4px;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_butonlar">
+     <item>
+      <widget class="QPushButton" name="ekle_btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: black
+;
+    border-radius: 15px;
+    padding: 4px 8px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+       </property>
+       <property name="text">
+        <string>➕ Sipariş Ekle</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="odeme_btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: black;
+    border-radius: 15px;
+    padding: 4px 8px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+       </property>
+       <property name="text">
+        <string>💰 Ödeme Yap</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

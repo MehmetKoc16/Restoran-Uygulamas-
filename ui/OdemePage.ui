@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OdemeSecimEkrani</class>
+ <widget class="QWidget" name="OdemeSecimEkrani">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>150</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>💳 Ödeme Seçimi</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FFE0B2, stop:1 #FFCC80);
+border-radius: 15px;
+border: 2px solid #FFA726;</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_toplam">
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 150);
+border: 1px solid rgba(0, 0, 0, 0);
+border-bottom: 2px solid #FFA000;
+color: #5D4037;
+padding-bottom: 7px;
+border-radius: 4px;</string>
+     </property>
+     <property name="text">
+      <string>Toplam Tutar: {toplam_tutar} TL</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="kart_btn">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: black;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+     </property>
+     <property name="text">
+      <string>💳 Kart ile Ödeme</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="nakit_btn">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: black;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+/* Hover efekti (üzerine gelindiğinde) */
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+/* Basılı durum efekti */
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+     </property>
+     <property name="text">
+      <string>💵 Nakit ile Ödeme</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

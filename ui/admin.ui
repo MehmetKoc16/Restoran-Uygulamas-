@@ -1,0 +1,1283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AdminPanel</class>
+ <widget class="QMainWindow" name="AdminPanel">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Restaurant Admin Panel</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+ background-color: #ECEFF1; /* Açık Beyaz */
+ border-radius: 15px; /* QMainWindow'a doğrudan border-radius uygulamak pencere yöneticisine bağlı olarak çalışmayabilir */
+ border: 2px solid #303F9F; /* Koyu Lacivert */
+}
+QFrame#sideMenuFrame {
+ background-color: #3F51B5; /* Orta Lacivert */
+ border: none;
+}
+QListWidget {
+ background-color: transparent;
+ border: none;
+ color: #ECEFF1; /* Açık Beyaz */
+}
+QListWidget::item {
+ padding: 12px;
+ border-bottom: 1px solid #5C6BC0; /* Açıkça Ayıran Lacivert */
+}
+QListWidget::item:hover {
+ background-color: #5C6BC0; /* Açıkça Ayıran Lacivert */
+}
+QListWidget::item:selected {
+ background-color: #283593; /* Daha Koyu Lacivert */
+}
+QPushButton {
+ background-color: #3F51B5; /* Orta Lacivert */
+ color: #ECEFF1; /* Açık Beyaz */
+ border-radius: 8px;
+ padding: 8px 16px;
+ font-weight: bold;
+ border: 2px solid #3F51B5;
+ min-width: 80px; /* Mevcut buton stilini korudum */
+}
+QPushButton:hover {
+ background-color: #5C6BC0; /* Açıkça Ayıran Lacivert */
+ border: 2px solid #5C6BC0;
+}
+QPushButton:pressed {
+ background-color: #303F9F; /* Koyu Lacivert */
+ border: 2px solid #303F9F;
+}
+QTableWidget {
+ background-color: #ECEFF1; /* Açık Beyaz */
+ alternate-background-color: #F5F5F5; /* Daha Açık Beyaz */
+ selection-background-color: #283593; /* Daha Koyu Lacivert */
+ selection-color: #ECEFF1; /* Açık Beyaz */
+ border: 1px solid #303F9F; /* Koyu Lacivert */
+ border-radius: 5px;
+ margin: 5px;
+}
+QHeaderView::section {
+ background-color: #303F9F; /* Koyu Lacivert */
+ color: #ECEFF1; /* Açık Beyaz */
+ padding: 5px;
+ font-weight: bold;
+ border: none;
+ border-bottom: 2px solid #3F51B5; /* Orta Lacivert */
+}
+QLabel {
+ color: #303F9F; /* Koyu Lacivert */
+}
+QLineEdit {
+ background-color: #F5F5F5; /* Daha Açık Beyaz */
+ border: 1px solid #3F51B5; /* Orta Lacivert */
+ border-radius: 5px;
+ padding: 5px;
+ margin: 5px;
+ color: #303F9F; /* Koyu Lacivert */
+}
+QComboBox {
+ background-color: #F5F5F5; /* Daha Açık Beyaz */
+ border: 1px solid #3F51B5; /* Orta Lacivert */
+ border-radius: 5px;
+ padding: 5px;
+ margin: 5px;
+ color: #303F9F; /* Koyu Lacivert */
+}
+QComboBox::drop-down {
+ subcontrol-origin: padding;
+ subcontrol-position: top right;
+ width: 20px;
+ border-left-width: 1px;
+ border-left-color: #5C6BC0; /* Açıkça Ayıran Lacivert */
+ border-left-style: solid; /* just a single line */
+ border-top-right-radius: 3px;
+ border-bottom-right-radius: 3px;
+}
+QComboBox::down-arrow {
+ /* image: url(:/icons/down_arrow.png); Eğer böyle bir ikonunuz varsa */
+ width: 12px;
+ height: 12px;
+ color: #303F9F; /* İkon rengi olarak lacivert */
+}
+QTabWidget::pane { /* The tab widget frame */
+ border: 1px solid #3F51B5; /* Orta Lacivert */
+ background: #ECEFF1; /* Açık Beyaz */
+ border-radius: 5px;
+ margin: 5px;
+}
+QTabWidget::tab-bar:top {
+ alignment: center;
+}
+QTabBar::tab {
+ background: #5C6BC0; /* Açıkça Ayıran Lacivert */
+ color: #ECEFF1; /* Açık Beyaz */
+ border: 1px solid #3F51B5; /* Orta Lacivert */
+ padding: 8px 15px;
+ border-top-left-radius: 5px;
+ border-top-right-radius: 5px;
+ margin-right: 2px;
+ font-weight: bold;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+ background: #3F51B5; /* Orta Lacivert */
+ color: #ECEFF1; /* Açık Beyaz */
+}
+QStatusBar {
+ background-color: #ECEFF1; /* Açık Beyaz */
+ color: #303F9F; /* Koyu Lacivert */
+ padding: 3px;
+ border-top: 2px solid #3F51B5; /* Orta Lacivert */
+ border-radius: 0;
+}
+QLabel#label_restaurantName {
+ color: #ECEFF1; /* Açık Beyaz */
+ border-bottom: 2px solid #5C6BC0; /* Açıkça Ayıran Lacivert */
+}
+QLabel#label_customerTitle, QLabel#label_menuTitle, QLabel#label_financeTitle, QLabel#label_ordersTitle {
+ color: #3F51B5; /* Orta Lacivert */
+ font-weight: bold;
+ border-bottom: 2px solid #5C6BC0; /* Açıkça Ayıran Lacivert */
+ padding-bottom: 7px;
+ margin-bottom: 10px;
+}
+QLabel#lblTotalIncome, QLabel#lblTotalExpenses, QLabel#lblNetProfit {
+ color: #3F51B5; /* Orta Lacivert */
+ font-weight: bold;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="mainLayout">
+    <item>
+     <widget class="QFrame" name="sideMenuFrame">
+      <property name="minimumWidth">
+       <number>220</number>
+      </property>
+      <property name="maximumWidth">
+       <number>220</number>
+      </property>
+      <layout class="QVBoxLayout" name="sideMenuLayout">
+       <item>
+        <widget class="QLabel" name="label_restaurantName">
+         <property name="text">
+          <string>RESTAURANT</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           font-size: 20px;
+           font-weight: bold;
+           color: #ECEFF1;
+           padding: 20px 0;
+           border-bottom: 2px solid #5C6BC0;
+          </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="listWidget_menu">
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           background-color: transparent;
+           border: none;
+           color: #ECEFF1; /* Menü metin rengi */
+          </string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Müşteri Yönetimi</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/icons.qrc">
+            <normaloff>:/icons/customer_white.png</normaloff>:/icons/customer_white.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Menü Yönetimi</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/icons.qrc">
+            <normaloff>:/icons/menu_white.png</normaloff>:/icons/menu_white.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Finansal İşlemler</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/icons.qrc">
+            <normaloff>:/icons/finance_white.png</normaloff>:/icons/finance_white.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sipariş Yönetimi</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/icons.qrc">
+            <normaloff>:/icons/orders_white.png</normaloff>:/icons/orders_white.png</iconset>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnLogout">
+         <property name="text">
+          <string>Çıkış Yap</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/icons.qrc">
+           <normaloff>:/icons/logout_white.png</normaloff>:/icons/logout_white.png</iconset>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           QPushButton {
+            background-color: #283593; /* Daha Koyu Lacivert */
+            color: #ECEFF1;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-weight: bold;
+            border: 2px solid #283593;
+           }
+
+           QPushButton:hover {
+            background-color: #3F51B5; /* Orta Lacivert */
+            border: 2px solid #3F51B5;
+           }
+
+           QPushButton:pressed {
+            background-color: #1A237E; /* En Koyu Lacivert */
+            border: 2px solid #1A237E;
+           }
+          </string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget_content">
+      <widget class="QWidget" name="customerPage">
+       <layout class="QVBoxLayout" name="customerLayout">
+        <item>
+         <widget class="QLabel" name="label_customerTitle">
+          <property name="text">
+           <string>Müşteri Yönetimi</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px;
+            color: #3F51B5;
+            border-bottom: 2px solid #5C6BC0;
+            margin-bottom: 10px;
+           </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="customerTable">
+          <property name="columnCount">
+           <number>5</number>
+          </property>
+          <property name="rowCount">
+           <number>0</number>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="showGrid">
+           <bool>true</bool>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+            background-color: #ECEFF1;
+            alternate-background-color: #F5F5F5;
+            selection-background-color: #283593;
+            selection-color: #ECEFF1;
+            border: 1px solid #303F9F;
+            border-radius: 5px;
+            margin: 5px;
+           </string>
+          </property>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Ad</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Telefon</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>E-posta</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Son Ziyaret</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="customerButtonLayout">
+          <item>
+           <widget class="QPushButton" name="btnAddCustomer">
+            <property name="text">
+             <string>Yeni Ekle</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/icons.qrc">
+              <normaloff>:/icons/add_white.png</normaloff>:/icons/add_white.png</iconset>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+               background-color: #3F51B5;
+               color: #ECEFF1;
+               border-radius: 8px;
+               padding: 8px 16px;
+               font-weight: bold;
+               border: 2px solid #3F51B5;
+              }
+
+              QPushButton:hover {
+               background-color: #5C6BC0;
+               border: 2px solid #5C6BC0;
+              }
+
+              QPushButton:pressed {
+               background-color: #303F9F;
+               border: 2px solid #303F9F;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnEditCustomer">
+            <property name="text">
+             <string>Düzenle</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/icons.qrc">
+              <normaloff>:/icons/edit_white.png</normaloff>:/icons/edit_white.png</iconset>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+               background-color: #3F51B5;
+               color: #ECEFF1;
+               border-radius: 8px;
+               padding: 8px 16px;
+               font-weight: bold;
+               border: 2px solid #3
+               border: 2px solid #3F51B5;
+              }
+
+              QPushButton:hover {
+               background-color: #5C6BC0;
+               border: 2px solid #5C6BC0;
+              }
+
+              QPushButton:pressed {
+               background-color: #303F9F;
+               border: 2px solid #303F9F;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnDeleteCustomer">
+            <property name="text">
+             <string>Sil</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/icons.qrc">
+              <normaloff>:/icons/delete_white.png</normaloff>:/icons/delete_white.png</iconset>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+               background-color: #3F51B5;
+               color: #ECEFF1;
+               border-radius: 8px;
+               padding: 8px 16px;
+               font-weight: bold;
+               border: 2px solid #3F51B5;
+              }
+
+              QPushButton:hover {
+               background-color: #5C6BC0;
+               border: 2px solid #5C6BC0;
+              }
+
+              QPushButton:pressed {
+               background-color: #303F9F;
+               border: 2px solid #303F9F;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtCustomerSearch">
+            <property name="placeholderText">
+             <string>Müşteri ara...</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              background-color: #F5F5F5;
+              border: 1px solid #3F51B5;
+              border-radius: 5px;
+              padding: 5px;
+              margin: 5px;
+              color: #303F9F;
+             </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="menuPage">
+       <layout class="QVBoxLayout" name="menuLayout">
+        <item>
+         <widget class="QLabel" name="label_menuTitle">
+          <property name="text">
+           <string>Menü Yönetimi</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px;
+            color: #3F51B5;
+            border-bottom: 2px solid #5C6BC0;
+            margin-bottom: 10px;
+           </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="menuTable">
+          <property name="columnCount">
+           <number>5</number>
+          </property>
+          <property name="rowCount">
+           <number>0</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Ürün Adı</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Kategori</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Fiyat</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Stok</string>
+           </property>
+          </column>
+          <property name="styleSheet">
+           <string notr="true">
+            background-color: #ECEFF1;
+            alternate-background-color: #F5F5F5;
+            selection-background-color: #283593;
+            selection-color: #ECEFF1;
+            border: 1px solid #303F9F;
+            border-radius: 5px;
+            margin: 5px;
+           </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="menuButtonLayout">
+          <item>
+           <widget class="QPushButton" name="btnAddMenuItem">
+            <property name="text">
+             <string>Yeni Ürün</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/icons.qrc">
+              <normaloff>:/icons/add_white.png</normaloff>:/icons/add_white.png</iconset>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+               background-color: #3F51B5;
+               color: #ECEFF1;
+               border-radius: 8px;
+               padding: 8px 16px;
+               font-weight: bold;
+               border: 2px solid #3F51B5;
+              }
+
+              QPushButton:hover {
+               background-color: #5C6BC0;
+               border: 2px solid #5C6BC0;
+              }
+
+              QPushButton:pressed {
+               background-color: #303F9F;
+               border: 2px solid #303F9F;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnEditMenuItem">
+            <property name="text">
+             <string>Düzenle</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/icons.qrc">
+              <normaloff>:/icons/edit_white.png</normaloff>:/icons/edit_white.png</iconset>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+               background-color: #3F51B5;
+               color: #ECEFF1;
+               border-radius: 8px;
+               padding: 8px 16px;
+               font-weight: bold;
+               border: 2px solid #3F51B5;
+              }
+
+              QPushButton:hover {
+               background-color: #5C6BC0;
+               border: 2px solid #5C6BC0;
+              }
+
+              QPushButton:pressed {
+               background-color: #303F9F;
+               border: 2px solid #303F9F;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnDeleteMenuItem">
+            <property name="text">
+             <string>Sil</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/icons.qrc">
+              <normaloff>:/icons/delete_white.png</normaloff>:/icons/delete_white.png</iconset>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+               background-color: #3F51B5;
+               color: #ECEFF1;
+               border-radius: 8px;
+               padding: 8px 16px;
+               font-weight: bold;
+               border: 2px solid #3F51B5;
+              }
+
+              QPushButton:hover {
+               background-color: #5C6BC0;
+               border: 2px solid #5C6BC0;
+              }
+
+              QPushButton:pressed {
+               background-color: #303F9F;
+               border: 2px solid #303F9F;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cmbMenuCategory">
+            <item>
+             <property name="text">
+              <string>Tüm Kategoriler</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Başlangıçlar</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ana Yemekler</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>İçecekler</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tatlılar</string>
+             </property>
+            </item>
+            <property name="styleSheet">
+             <string notr="true">
+              background-color: #F5F5F5;
+              border: 1px solid #3F51B5;
+              border-radius: 5px;
+              padding: 5px;
+              margin: 5px;
+              color: #303F9F;
+             </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="financePage">
+       <layout class="QVBoxLayout" name="financeLayout">
+        <item>
+         <widget class="QLabel" name="label_financeTitle">
+          <property name="text">
+           <string>Finansal İşlemler</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px;
+            color: #3F51B5;
+            border-bottom: 2px solid #5C6BC0;
+            margin-bottom: 10px;
+           </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTabWidget" name="tabWidget_finance">
+          <property name="styleSheet">
+           <string notr="true">
+            QTabWidget::pane { /* The tab widget frame */
+             border: 1px solid #3F51B5;
+             background: #ECEFF1;
+             border-radius: 5px;
+             margin: 5px;
+            }
+
+            QTabWidget::tab-bar:top {
+             alignment: center;
+            }
+
+            QTabBar::tab {
+             background: #5C6BC0;
+             color: #ECEFF1;
+             border: 1px solid #3F51B5;
+             padding: 8px 15px;
+             border-top-left-radius: 5px;
+             border-top-right-radius: 5px;
+             margin-right: 2px;
+             font-weight: bold;
+            }
+
+            QTabBar::tab:selected, QTabBar::tab:hover {
+             background: #3F51B5;
+             color: #ECEFF1;
+            }
+           </string>
+          </property>
+          <widget class="QWidget" name="tabIncome">
+           <attribute name="title">
+            <string>Gelirler</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="incomeLayout">
+            <item>
+             <widget class="QTableWidget" name="incomeTable">
+              <column>
+               <property name="text">
+                <string>Tarih</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Açıklama</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Miktar</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Kategori</string>
+               </property>
+              </column>
+              <property name="styleSheet">
+               <string notr="true">
+                background-color: #ECEFF1;
+                alternate-background-color: #F5F5F5;
+                selection-background-color: #283593;
+                selection-color: #ECEFF1;
+                border: 1px solid #303F9F;
+                border-radius: 5px;
+                margin: 5px;
+               </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="incomeButtonLayout">
+              <item>
+               <widget class="QPushButton" name="btnAddIncome">
+                <property name="text">
+                 <string>Gelir Ekle</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">
+                  QPushButton {
+                   background-color: #3F51B5;
+                   color: #ECEFF1;
+                   border-radius: 8px;
+                   padding: 8px 16px;
+                   font-weight: bold;
+                   border: 2px solid #3F51B5;
+                  }
+
+                  QPushButton:hover {
+                   background-color: #5C6BC0;
+                   border: 2px solid #5C6BC0;
+                  }
+
+                  QPushButton:pressed {
+                   background-color: #303F9F;
+                   border: 2px solid #303F9F;
+                  }
+                 </string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblTotalIncome">
+                <property name="text">
+                 <string>Toplam Gelir: 0.00 TL</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font-weight: bold; color: #4CAF50; color: #303F9F;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabExpenses">
+           <attribute name="title">
+            <string>Giderler</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="expensesLayout">
+            <item>
+             <widget class="QTableWidget" name="expensesTable">
+              <column>
+               <property name="text">
+                <string>Tarih</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Açıklama</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Miktar</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Kategori</string>
+               </property>
+              </column>
+              <property name="styleSheet">
+               <string notr="true">
+                background-color: #ECEFF1;
+                alternate-background-color: #F5F5F5;
+                selection-background-color: #283593;
+                selection-color: #ECEFF1;
+                border: 1px solid #303F9F;
+                border-radius: 5px;
+                margin: 5px;
+               </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="expensesButtonLayout">
+              <item>
+               <widget class="QPushButton" name="btnAddExpense">
+                <property name="text">
+                 <string>Gider Ekle</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">
+                  QPushButton {
+                   background-color: #3F51B5;
+                   color: #ECEFF1;
+                   border-radius: 8px;
+                   padding: 8px 16px;
+                   font-weight: bold;
+                   border: 2px solid #3F51B5;
+                  }
+
+                  QPushButton:hover {
+                   background-color: #5C6BC0;
+                   border: 2px solid #5C6BC0;
+                  }
+
+                  QPushButton:pressed {
+                   background-color: #303F9F;
+                   border: 2px solid #303F9F;
+                  }
+                 </string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblTotalExpenses">
+                <property name="text">
+                 <string>Toplam Gider: 0.00 TL</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font-weight: bold; color: #F44336; color: #303F9F;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="netProfitLayout">
+          <item>
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblNetProfit">
+            <property name="text">
+             <string>Net Kâr: 0.00 TL</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-size: 18px; font-weight: bold; color: #2196F3; color: #303F9F;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="ordersPage">
+       <layout class="QVBoxLayout" name="ordersLayout">
+        <item>
+         <widget class="QLabel" name="label_ordersTitle">
+          <property name="styleSheet">
+           <string notr="true">
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px;
+            color: #3F51B5;
+            border-bottom: 2px solid #5C6BC0;
+            margin-bottom: 10px;
+           </string>
+          </property>
+          <property name="text">
+           <string>Sipariş Yönetimi</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="ordersTable">
+          <property name="columnCount">
+           <number>6</number>
+          </property>
+          <property name="rowCount">
+           <number>0</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>Sipariş ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Müşteri Adı</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Sipariş Tarihi</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Toplam Tutar</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Durum</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Detaylar</string>
+           </property>
+          </column>
+          <property name="styleSheet">
+           <string notr="true">
+            background-color: #ECEFF1;
+            alternate-background-color: #F5F5F5;
+            selection-background-color: #283593;
+            selection-color: #ECEFF1;
+            border: 1px solid #303F9F;
+            border-radius: 5px;
+            margin: 5px;
+           </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="ordersButtonLayout">
+          <item>
+           <widget class="QPushButton" name="btnNewOrder">
+            <property name="text">
+             <string>Yeni Sipariş</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/icons.qrc">
+              <normaloff>:/icons/add_white.png</normaloff>:/icons/add_white.png</iconset>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+               background-color: #3F51B5;
+               color: #ECEFF1;
+               border-radius: 8px;
+               padding: 8px 16px;
+               font-weight: bold;
+               border: 2px solid #3F51B5;
+              }
+
+              QPushButton:hover {
+               background-color: #5C6BC0;
+               border: 2px solid #5C6BC0;
+              }
+
+              QPushButton:pressed {
+               background-color: #303F9F;
+               border: 2px solid #303F9F;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnEditOrder">
+            <property name="text">
+             <string>Düzenle</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/icons.qrc">
+              <normaloff>:/icons/edit_white.png</normaloff>:/icons/edit_white.png</iconset>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+               background-color: #3F51B5;
+               color: #ECEFF1;
+               border-radius: 8px;
+               padding: 8px 16px;
+               font-weight: bold;
+               border: 2px solid #3F51B5;
+              }
+
+              QPushButton:hover {
+               background-color: #5C6BC0;
+               border: 2px solid #5C6BC0;
+              }
+
+              QPushButton:pressed {
+               background-color: #303F9F;
+               border: 2px solid #303F9F;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnCancelOrder">
+            <property name="text">
+             <string>İptal Et</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/icons.qrc">
+              <normaloff>:/icons/delete_white.png</normaloff>:/icons/delete_white.png</iconset>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+               background-color: #3F51B5;
+               color: #ECEFF1;
+               border-radius: 8px;
+               padding: 8px 16px;
+               font-weight: bold;
+               border: 2px solid #3F51B5;
+              }
+
+              QPushButton:hover {
+               background-color: #5C6BC0;
+               border: 2px solid #5C6BC0;
+              }
+
+              QPushButton:pressed {
+               background-color: #303F9F;
+               border: 2px solid #303F9F;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cmbOrderStatusFilter">
+            <item>
+             <property name="text">
+              <string>Tüm Siparişler</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Bekliyor</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Hazırlanıyor</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Teslim Edildi</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>İptal Edildi</string>
+             </property>
+            </item>
+            <property name="styleSheet">
+             <string notr="true">
+              background-color: #F5F5F5;
+              border: 1px solid #3F51B5;
+              border-radius: 5px;
+              padding: 5px;
+              margin: 5px;
+              color: #303F9F;
+             </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="styleSheet">
+    <string notr="true">
+     background-color: #ECEFF1;
+     color: #303F9F;
+     padding: 3px;
+     border-top: 2px solid #3F51B5;
+     border-radius: 0;
+    </string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resources/icons.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>listWidget_menu</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>stackedWidget_content</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>487</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

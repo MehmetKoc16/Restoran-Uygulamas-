@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>KartBilgisiEkrani</class>
+ <widget class="QDialog" name="KartBilgisiEkrani">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>💳 Kart Bilgileri</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FFE0B2, stop:1 #FFCC80);
+border-radius: 15px;
+border: 2px solid #FFA726;</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_toplam">
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 150);
+border: 1px solid rgba(0, 0, 0, 0);
+border-bottom: 2px solid #FFA000;
+color: #5D4037;
+padding-bottom: 7px;
+border-radius: 4px;</string>
+     </property>
+     <property name="text">
+      <string>Toplam Tutar: {toplam_tutar} TL</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_kart_ustu">
+     <property name="styleSheet">
+      <string notr="true">font-weight: bold;
+color: #5D4037;
+margin-top: 10px;</string>
+     </property>
+     <property name="text">
+      <string>Kart Üzerindeki Bilgiler</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="kart_numarasi">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 200);
+border: 1px solid #FFA726;
+border-radius: 5px;
+padding: 5px;
+margin: 5px;</string>
+     </property>
+     <property name="placeholderText">
+      <string>Kart Numarası (16 Hane)</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="kart_adi">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 200);
+border: 1px solid #FFA726;
+border-radius: 5px;
+padding: 5px;
+margin: 5px;</string>
+     </property>
+     <property name="placeholderText">
+      <string>Kart Üzerindeki Ad Soyad</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="skt_ay">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 200);
+border: 1px solid #FFA726;
+border-radius: 5px;
+padding: 5px;
+margin: 5px;</string>
+       </property>
+       <property name="maxLength">
+        <number>2</number>
+       </property>
+       <property name="placeholderText">
+        <string>AA (Ay)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="skt_yil">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 200);
+border: 1px solid #FFA726;
+border-radius: 5px;
+padding: 5px;
+margin: 5px;</string>
+       </property>
+       <property name="maxLength">
+        <number>2</number>
+       </property>
+       <property name="placeholderText">
+        <string>YY (Yıl)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="cvv_kodu">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 200);
+border: 1px solid #FFA726;
+border-radius: 5px;
+padding: 5px;
+margin: 5px;</string>
+       </property>
+       <property name="maxLength">
+        <number>3</number>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>CVV (3 Hane)</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="odeme_btn">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #FF9800;
+    color: black;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #FF9800;
+}
+
+QPushButton:hover {
+    background-color: #FB8C00;
+    border: 2px solid #FB8C00;
+}
+
+QPushButton:pressed {
+    background-color: #F57C00;
+    border: 2px solid #F57C00;
+}</string>
+     </property>
+     <property name="text">
+      <string>Ödemeyi Tamamla</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
