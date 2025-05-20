@@ -29,7 +29,7 @@ class LoginWindow(QtWidgets.QWidget):
         if user:
             user_id = user[0]
             kullanici_tipi = user[1] if len(user) > 1 else "kullanici"
-            if kullanici_tipi == "admin" or username == "admin":  # veya başka bir admin kontrolü
+            if kullanici_tipi == "admin" or username == "admin":
                 from Screen.AdminWindow import AdminWindow
                 self.admin_panel = AdminWindow()
                 self.admin_panel.show()

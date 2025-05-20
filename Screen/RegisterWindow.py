@@ -6,7 +6,7 @@ from DataBase import database
 class RegisterWindow(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)  # Ana pencereyi frameless yap
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.shadow = QtWidgets.QGraphicsDropShadowEffect(self)
         self.shadow.setBlurRadius(20)
@@ -25,17 +25,14 @@ class RegisterWindow(QtWidgets.QWidget):
         password = self.ui.lineEdit_2.text()
         confirm = self.ui.lineEdit_3.text()
 
-        # Boş alan kontrolü
         if not all([username, email, telefon, password, confirm]):
             QtWidgets.QMessageBox.warning(self, "Hata", "Lütfen tüm alanları doldurun!")
             return
 
-        # E-posta formatı kontrolü
         if '@' not in email or '.' not in email:
             QtWidgets.QMessageBox.warning(self, "Hata", "Geçerli bir e-posta adresi giriniz!")
             return
 
-        # Telefon formatı kontrolü (basit kontrol)
         if not telefon.replace(' ', '').isdigit() or len(telefon.replace(' ', '')) < 10:
             QtWidgets.QMessageBox.warning(self, "Hata", "Geçerli bir telefon numarası giriniz!")
             return

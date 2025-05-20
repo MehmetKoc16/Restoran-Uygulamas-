@@ -64,21 +64,20 @@ class MasaWindow(QtWidgets.QWidget):
         conn.close()
         if urun:
             ad, fiyat = urun
-            self.siparisler.append((ad, fiyat))  # Listeye ekle
+            self.siparisler.append((ad, fiyat))
             self.ui.siparis_listesi.addItem(f"{ad} - {fiyat} TL")
 
     def odeme_yap(self):
-        if not self.siparisler:  # Eğer sipariş listesi boşsa
+        if not self.siparisler: 
             QtWidgets.QMessageBox.warning(self, "Uyarı", "Lütfen önce sipariş ekleyin!")
             return
             
         from Screen.OdemeWindow import OdemeWindow
         self.odeme_window = OdemeWindow(self.masa_no, self.siparisler, self, self.user_id)
         self.odeme_window.show()
-        self.close()  # Masa sayfasını kapat
+        self.close() 
 
     def closeEvent(self, event):
-        # Masa kapanınca ana ekrana bildir
         button = getattr(self.home_window.ui, f"masaButon{self.masa_no}")
         button.setText(f"Masa {self.masa_no} (Boş)")
         button.setEnabled(True)

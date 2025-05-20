@@ -8,9 +8,8 @@ class FinancialDialog(QtWidgets.QDialog):
         super().__init__(parent)
         self.ui = Ui_FinancialDialog()
         self.ui.setupUi(self)
-        self.transaction_type = transaction_type  # "income" veya "expense"
+        self.transaction_type = transaction_type 
         
-        # İşlem tipine göre başlık ayarla
         if transaction_type == "income":
             self.setWindowTitle("Gelir Ekle")
             self.load_income_categories()
@@ -35,18 +34,15 @@ class FinancialDialog(QtWidgets.QDialog):
     
     def accept(self):
         """Diyalog kabul edildiğinde (OK butonuna basıldığında) çağrılır"""
-        # Form verilerini al
         date = self.ui.dateEdit.date().toString("yyyy-MM-dd")
         description = self.ui.lineEdit_description.text()
         category = self.ui.comboBox_category.currentText()
-        amount_text = self.ui.lineEdit_amount.text().replace(',', '.')  # Virgül yerine nokta kullan
+        amount_text = self.ui.lineEdit_amount.text().replace(',', '.')
         
-        # Boş alan kontrolü
         if not description:
             QtWidgets.QMessageBox.warning(self, "Hata", "Açıklama boş olamaz!")
             return
             
-        # Tutar kontrolü
         try:
             amount = float(amount_text)
             if amount <= 0:
@@ -56,11 +52,9 @@ class FinancialDialog(QtWidgets.QDialog):
             QtWidgets.QMessageBox.warning(self, "Hata", "Geçerli bir tutar giriniz!")
             return
         
-        # Veritabanı işlemleri
         conn = database.create_connection()
         c = conn.cursor()
         try:
-            # Finansal işlemler tablosunu oluştur (eğer yoksa)
             c.execute("""
                 CREATE TABLE IF NOT EXISTS finansal_islemler (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -72,14 +66,13 @@ class FinancialDialog(QtWidgets.QDialog):
                 )
             """)
             
-            # İşlemi ekle
             c.execute("""
                 INSERT INTO finansal_islemler (tarih, aciklama, kategori, tutar, tip) 
                 VALUES (?, ?, ?, ?, ?)
             """, (date, description, category, amount, self.transaction_type))
             
             conn.commit()
-            super().accept()  # Diyaloğu kapat
+            super().accept()
             
         except sqlite3.Error as e:
             QtWidgets.QMessageBox.warning(self, "Hata", f"Veritabanı hatası: {str(e)}")

@@ -10,10 +10,8 @@ class MenuItemDialog(QtWidgets.QDialog):
         self.ui.setupUi(self)
         self.item_id = item_id
         
-        # Kategorileri yükle
         self.load_categories()
         
-        # Eğer ürün ID'si varsa, düzenleme modunda çalış
         if item_id:
             self.setWindowTitle("Menü Öğesi Düzenle")
             self.load_item_data()
@@ -49,7 +47,6 @@ class MenuItemDialog(QtWidgets.QDialog):
                 name, category_id, price = item
                 self.ui.lineEdit_name.setText(name)
                 
-                # Kategori seçimi
                 index = self.ui.comboBox_category.findData(category_id)
                 if index >= 0:
                     self.ui.comboBox_category.setCurrentIndex(index)
@@ -62,12 +59,10 @@ class MenuItemDialog(QtWidgets.QDialog):
     
     def accept(self):
         """Diyalog kabul edildiğinde (OK butonuna basıldığında) çağrılır"""
-        # Form verilerini al
         name = self.ui.lineEdit_name.text()
         category_id = self.ui.comboBox_category.currentData()
-        price_text = self.ui.lineEdit_price.text().replace(',', '.')  # Virgül yerine nokta kullan
+        price_text = self.ui.lineEdit_price.text().replace(',', '.')
         
-        # Boş alan kontrolü
         if not name:
             QtWidgets.QMessageBox.warning(self, "Hata", "Ürün adı boş olamaz!")
             return
@@ -76,7 +71,6 @@ class MenuItemDialog(QtWidgets.QDialog):
             QtWidgets.QMessageBox.warning(self, "Hata", "Lütfen bir kategori seçin!")
             return
             
-        # Fiyat kontrolü
         try:
             price = float(price_text)
             if price <= 0:
@@ -86,24 +80,23 @@ class MenuItemDialog(QtWidgets.QDialog):
             QtWidgets.QMessageBox.warning(self, "Hata", "Geçerli bir fiyat giriniz!")
             return
         
-        # Veritabanı işlemleri
         conn = database.create_connection()
         c = conn.cursor()
         try:
-            if self.item_id:  # Düzenleme modu
+            if self.item_id:
                 c.execute("""
                     UPDATE urunler 
                     SET ad=?, kategori_id=?, fiyat=? 
                     WHERE id=?
                 """, (name, category_id, price, self.item_id))
-            else:  # Yeni ürün ekleme modu
+            else:
                 c.execute("""
                     INSERT INTO urunler (ad, kategori_id, fiyat) 
                     VALUES (?, ?, ?)
                 """, (name, category_id, price))
             
             conn.commit()
-            super().accept()  # Diyaloğu kapat
+            super().accept()
             
         except sqlite3.Error as e:
             QtWidgets.QMessageBox.warning(self, "Hata", f"Veritabanı hatası: {str(e)}")

@@ -31,7 +31,6 @@ class ProfilWindow(QtWidgets.QWidget):
         conn = database.create_connection()
         c = conn.cursor()
         try:
-            # Fatura geçmişini al
             c.execute("""
                 SELECT 
                     f.id,
@@ -48,7 +47,6 @@ class ProfilWindow(QtWidgets.QWidget):
             """, (self.user_id,))
             faturalar = c.fetchall()
             
-            # Geçmiş metnini oluştur
             gecmis_text = ""
             for fatura in faturalar:
                 fatura_id, tarih, toplam_tutar, urunler = fatura

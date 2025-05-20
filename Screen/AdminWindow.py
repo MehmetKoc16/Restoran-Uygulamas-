@@ -10,32 +10,26 @@ class AdminWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.setWindowTitle("Admin Paneli")
 
-        # Buton bağlantıları
         self.ui.btnLogout.clicked.connect(self.logout)
 
-        # Müşteri yönetimi
         self.ui.btnAddCustomer.clicked.connect(self.add_customer)
         self.ui.btnEditCustomer.clicked.connect(self.edit_customer)
         self.ui.btnDeleteCustomer.clicked.connect(self.delete_customer)
         self.ui.txtCustomerSearch.textChanged.connect(self.search_customer)
 
-        # Menü yönetimi
         self.ui.btnAddMenuItem.clicked.connect(self.add_menu_item)
         self.ui.btnEditMenuItem.clicked.connect(self.edit_menu_item)
         self.ui.btnDeleteMenuItem.clicked.connect(self.delete_menu_item)
         self.ui.cmbMenuCategory.currentIndexChanged.connect(self.filter_menu_items)
 
-        # Finansal işlemler
         self.ui.btnAddIncome.clicked.connect(self.add_income)
         self.ui.btnAddExpense.clicked.connect(self.add_expense)
 
-        # Sipariş yönetimi
         self.ui.btnNewOrder.clicked.connect(self.new_order)
         self.ui.btnEditOrder.clicked.connect(self.edit_order)
         self.ui.btnCancelOrder.clicked.connect(self.cancel_order)
         self.ui.cmbOrderStatusFilter.currentIndexChanged.connect(self.filter_orders)
 
-        # Verileri yükle
         self.load_customers()
         self.load_menu_items()
         self.load_financial_data()
@@ -48,7 +42,6 @@ class AdminWindow(QtWidgets.QMainWindow):
         self.login_window.show()
         self.close()
 
-    # Müşteri yönetimi fonksiyonları
     def load_customers(self):
         """Müşteri verilerini veritabanından yükle"""
         self.ui.customerTable.setRowCount(0)
@@ -62,7 +55,6 @@ class AdminWindow(QtWidgets.QMainWindow):
                 self.ui.customerTable.insertRow(row_index)
                 for col_index, data in enumerate(customer):
                     self.ui.customerTable.setItem(row_index, col_index, QtWidgets.QTableWidgetItem(str(data)))
-                # Son ziyaret sütunu için boş değer
                 self.ui.customerTable.setItem(row_index, 4, QtWidgets.QTableWidgetItem(""))
         except sqlite3.Error as e:
             QtWidgets.QMessageBox.warning(self, "Hata", f"Müşteri verileri yüklenirken hata oluştu: {str(e)}")
@@ -74,7 +66,7 @@ class AdminWindow(QtWidgets.QMainWindow):
         from Screen.CustomerDialog import CustomerDialog
         dialog = CustomerDialog(parent=self)
         if dialog.exec_() == QtWidgets.QDialog.Accepted:
-            self.load_customers()  # Tabloyu yenile
+            self.load_customers()
             QtWidgets.QMessageBox.information(self, "Başarılı", "Yeni müşteri başarıyla eklendi.")
 
     def edit_customer(self):
@@ -85,7 +77,7 @@ class AdminWindow(QtWidgets.QMainWindow):
             from Screen.CustomerDialog import CustomerDialog
             dialog = CustomerDialog(customer_id=int(customer_id), parent=self)
             if dialog.exec_() == QtWidgets.QDialog.Accepted:
-                self.load_customers()  # Tabloyu yenile
+                self.load_customers()
                 QtWidgets.QMessageBox.information(self, "Başarılı", "Müşteri bilgileri başarıyla güncellendi.")
         else:
             QtWidgets.QMessageBox.warning(self, "Uyarı", "Lütfen düzenlenecek bir müşteri seçin.")
@@ -103,12 +95,10 @@ class AdminWindow(QtWidgets.QMainWindow):
                 conn = database.create_connection()
                 c = conn.cursor()
                 try:
-                    # Önce bu müşteriye ait faturaları kontrol et
                     c.execute("SELECT COUNT(*) FROM faturalar WHERE kullanici_id=?", (customer_id,))
                     fatura_sayisi = c.fetchone()[0]
 
                     if fatura_sayisi > 0:
-                        # Müşterinin faturaları varsa, silme işlemini onaylat
                         reply = QtWidgets.QMessageBox.question(self, "Dikkat",
                                                             f"Bu müşteriye ait {fatura_sayisi} adet fatura bulunuyor. Müşteriyi silmek, bu faturaları da silecektir. Devam etmek istiyor musunuz?",
                                                             QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
@@ -116,19 +106,16 @@ class AdminWindow(QtWidgets.QMainWindow):
                             conn.close()
                             return
 
-                        # Önce fatura ürünlerini sil
                         c.execute("""
                             DELETE FROM fatura_urunler
                             WHERE fatura_id IN (SELECT id FROM faturalar WHERE kullanici_id=?)
                         """, (customer_id,))
 
-                        # Sonra faturaları sil
                         c.execute("DELETE FROM faturalar WHERE kullanici_id=?", (customer_id,))
 
-                    # Son olarak müşteriyi sil
                     c.execute("DELETE FROM kullanicilar WHERE id=?", (customer_id,))
                     conn.commit()
-                    self.load_customers()  # Tabloyu yenile
+                    self.load_customers() 
                     QtWidgets.QMessageBox.information(self, "Başarılı", "Müşteri başarıyla silindi.")
                 except sqlite3.Error as e:
                     QtWidgets.QMessageBox.warning(self, "Hata", f"Müşteri silinirken hata oluştu: {str(e)}")
@@ -149,7 +136,6 @@ class AdminWindow(QtWidgets.QMainWindow):
                     break
             self.ui.customerTable.setRowHidden(row, not match_found)
 
-    # Menü yönetimi fonksiyonları
     def load_menu_items(self):
         """Menü öğelerini veritabanından yükle"""
         self.ui.menuTable.setRowCount(0)
@@ -177,7 +163,7 @@ class AdminWindow(QtWidgets.QMainWindow):
         from Screen.MenuItemDialog import MenuItemDialog
         dialog = MenuItemDialog(parent=self)
         if dialog.exec_() == QtWidgets.QDialog.Accepted:
-            self.load_menu_items()  # Tabloyu yenile
+            self.load_menu_items() 
             QtWidgets.QMessageBox.information(self, "Başarılı", "Yeni menü öğesi başarıyla eklendi.")
 
     def edit_menu_item(self):
@@ -188,7 +174,7 @@ class AdminWindow(QtWidgets.QMainWindow):
             from Screen.MenuItemDialog import MenuItemDialog
             dialog = MenuItemDialog(item_id=int(item_id), parent=self)
             if dialog.exec_() == QtWidgets.QDialog.Accepted:
-                self.load_menu_items()  # Tabloyu yenile
+                self.load_menu_items() 
                 QtWidgets.QMessageBox.information(self, "Başarılı", "Menü öğesi başarıyla güncellendi.")
         else:
             QtWidgets.QMessageBox.warning(self, "Uyarı", "Lütfen düzenlenecek bir menü öğesi seçin.")
@@ -199,15 +185,15 @@ class AdminWindow(QtWidgets.QMainWindow):
         if selected_row >= 0:
             item_id = self.ui.menuTable.item(selected_row, 0).text()
             reply = QtWidgets.QMessageBox.question(self, "Onay",
-                                                 f"Menü öğesi {item_id} silinecek. Emin misiniz?",
-                                                 QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+                 f"Menü öğesi {item_id} silinecek. Emin misiniz?",
+                 QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
             if reply == QtWidgets.QMessageBox.Yes:
                 conn = database.create_connection()
                 c = conn.cursor()
                 try:
                     c.execute("DELETE FROM urunler WHERE id=?", (item_id,))
                     conn.commit()
-                    self.load_menu_items()  # Tabloyu yenile
+                    self.load_menu_items()
                     QtWidgets.QMessageBox.information(self, "Başarılı", "Menü öğesi başarıyla silindi.")
                 except sqlite3.Error as e:
                     QtWidgets.QMessageBox.warning(self, "Hata", f"Menü öğesi silinirken hata oluştu: {str(e)}")
@@ -220,11 +206,9 @@ class AdminWindow(QtWidgets.QMainWindow):
         """Kategori filtresine göre menü öğelerini filtrele"""
         selected_category = self.ui.cmbMenuCategory.currentText()
         if selected_category == "Tüm Kategoriler":
-            # Tüm öğeleri göster
             for row in range(self.ui.menuTable.rowCount()):
                 self.ui.menuTable.setRowHidden(row, False)
         else:
-            # Seçili kategoriye göre filtrele
             for row in range(self.ui.menuTable.rowCount()):
                 category_item = self.ui.menuTable.item(row, 2)
                 if category_item and category_item.text() != selected_category:
@@ -232,18 +216,14 @@ class AdminWindow(QtWidgets.QMainWindow):
                 else:
                     self.ui.menuTable.setRowHidden(row, False)
 
-    # Finansal işlemler fonksiyonları
     def load_financial_data(self):
         """Finansal verileri yükle"""
-        # Gelirler
         self.ui.incomeTable.setRowCount(0)
-        # Giderler
         self.ui.expensesTable.setRowCount(0)
 
         conn = database.create_connection()
         c = conn.cursor()
         try:
-            # Finansal işlemler tablosunu oluştur (eğer yoksa)
             c.execute("""
                 CREATE TABLE IF NOT EXISTS finansal_islemler (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -256,7 +236,6 @@ class AdminWindow(QtWidgets.QMainWindow):
             """)
             conn.commit()
 
-            # Gelirler (faturalardan)
             c.execute("""
                 SELECT tarih, 'Satış', toplam_tutar, 'Satış' as kategori
                 FROM faturalar
@@ -271,7 +250,6 @@ class AdminWindow(QtWidgets.QMainWindow):
                     self.ui.incomeTable.setItem(row_index, col_index, QtWidgets.QTableWidgetItem(str(data)))
                 total_income += float(income[2])
 
-            # Gelirler (finansal_islemler tablosundan)
             c.execute("""
                 SELECT tarih, aciklama, tutar, kategori
                 FROM finansal_islemler
@@ -289,7 +267,6 @@ class AdminWindow(QtWidgets.QMainWindow):
 
             self.ui.lblTotalIncome.setText(f"Toplam Gelir: {total_income:.2f} TL")
 
-            # Giderler
             c.execute("""
                 SELECT tarih, aciklama, tutar, kategori
                 FROM finansal_islemler
@@ -307,7 +284,6 @@ class AdminWindow(QtWidgets.QMainWindow):
 
             self.ui.lblTotalExpenses.setText(f"Toplam Gider: {total_expense:.2f} TL")
 
-            # Net kâr
             net_profit = total_income - total_expense
             self.ui.lblNetProfit.setText(f"Net Kâr: {net_profit:.2f} TL")
 
@@ -321,7 +297,7 @@ class AdminWindow(QtWidgets.QMainWindow):
         from Screen.FinancialDialog import FinancialDialog
         dialog = FinancialDialog(transaction_type="income", parent=self)
         if dialog.exec_() == QtWidgets.QDialog.Accepted:
-            self.load_financial_data()  # Tabloyu yenile
+            self.load_financial_data()
             QtWidgets.QMessageBox.information(self, "Başarılı", "Yeni gelir başarıyla eklendi.")
 
     def add_expense(self):
@@ -329,10 +305,9 @@ class AdminWindow(QtWidgets.QMainWindow):
         from Screen.FinancialDialog import FinancialDialog
         dialog = FinancialDialog(transaction_type="expense", parent=self)
         if dialog.exec_() == QtWidgets.QDialog.Accepted:
-            self.load_financial_data()  # Tabloyu yenile
+            self.load_financial_data() 
             QtWidgets.QMessageBox.information(self, "Başarılı", "Yeni gider başarıyla eklendi.")
 
-    # Sipariş yönetimi fonksiyonları
     def load_orders(self):
         """Sipariş verilerini yükle"""
         self.ui.ordersTable.setRowCount(0)
@@ -361,8 +336,8 @@ class AdminWindow(QtWidgets.QMainWindow):
         from Screen.OrderDialog import OrderDialog
         dialog = OrderDialog(parent=self)
         if dialog.exec_() == QtWidgets.QDialog.Accepted:
-            self.load_orders()  # Tabloyu yenile
-            self.load_financial_data()  # Finansal verileri de güncelle
+            self.load_orders() 
+            self.load_financial_data()  
             QtWidgets.QMessageBox.information(self, "Başarılı", "Yeni sipariş başarıyla oluşturuldu.")
 
     def edit_order(self):
@@ -373,8 +348,8 @@ class AdminWindow(QtWidgets.QMainWindow):
             from Screen.OrderDialog import OrderDialog
             dialog = OrderDialog(order_id=int(order_id), parent=self)
             if dialog.exec_() == QtWidgets.QDialog.Accepted:
-                self.load_orders()  # Tabloyu yenile
-                self.load_financial_data()  # Finansal verileri de güncelle
+                self.load_orders()  
+                self.load_financial_data()  
                 QtWidgets.QMessageBox.information(self, "Başarılı", "Sipariş başarıyla güncellendi.")
         else:
             QtWidgets.QMessageBox.warning(self, "Uyarı", "Lütfen düzenlenecek bir sipariş seçin.")
@@ -391,15 +366,13 @@ class AdminWindow(QtWidgets.QMainWindow):
                 conn = database.create_connection()
                 c = conn.cursor()
                 try:
-                    # Önce fatura ürünlerini sil
                     c.execute("DELETE FROM fatura_urunler WHERE fatura_id=?", (order_id,))
 
-                    # Sonra faturayı sil
                     c.execute("DELETE FROM faturalar WHERE id=?", (order_id,))
 
                     conn.commit()
-                    self.load_orders()  # Tabloyu yenile
-                    self.load_financial_data()  # Finansal verileri de güncelle
+                    self.load_orders()  
+                    self.load_financial_data()  
                     QtWidgets.QMessageBox.information(self, "Başarılı", "Sipariş başarıyla iptal edildi.")
                 except sqlite3.Error as e:
                     QtWidgets.QMessageBox.warning(self, "Hata", f"Sipariş iptal edilirken hata oluştu: {str(e)}")
@@ -412,11 +385,9 @@ class AdminWindow(QtWidgets.QMainWindow):
         """Sipariş durumuna göre siparişleri filtrele"""
         selected_status = self.ui.cmbOrderStatusFilter.currentText()
         if selected_status == "Tüm Siparişler":
-            # Tüm siparişleri göster
             for row in range(self.ui.ordersTable.rowCount()):
                 self.ui.ordersTable.setRowHidden(row, False)
         else:
-            # Seçili duruma göre filtrele
             for row in range(self.ui.ordersTable.rowCount()):
                 status_item = self.ui.ordersTable.item(row, 4)
                 if status_item and status_item.text() != selected_status:

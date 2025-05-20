@@ -8,10 +8,8 @@ from Screen.LoginWindow import LoginWindow
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
 
-    # Veritabanını başlat
     database.init_database()
 
-    # Mevcut veritabanına kullanici_tipi sütununu ekle (eğer yoksa)
     conn = database.create_connection()
     c = conn.cursor()
     try:
@@ -23,7 +21,6 @@ if __name__ == "__main__":
     finally:
         conn.close()
 
-    # Admin kullanıcısı ekle (eğer yoksa)
     conn = database.create_connection()
     c = conn.cursor()
     c.execute("SELECT id FROM kullanicilar WHERE kullanici_adi='admin'")

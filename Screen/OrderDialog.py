@@ -9,26 +9,22 @@ class OrderDialog(QtWidgets.QDialog):
         self.ui = Ui_OrderDialog()
         self.ui.setupUi(self)
         self.order_id = order_id
-        self.order_items = []  # (urun_id, ad, fiyat, adet, toplam) şeklinde
+        self.order_items = []
         
-        # Müşterileri yükle
         self.load_customers()
         
-        # Kategorileri yükle
         self.load_categories()
-        
-        # Buton bağlantıları
+
         self.ui.comboBox_category.currentIndexChanged.connect(self.load_products)
         self.ui.pushButton_add.clicked.connect(self.add_product_to_order)
         self.ui.pushButton_remove.clicked.connect(self.remove_product_from_order)
-        
-        # Eğer sipariş ID'si varsa, düzenleme modunda çalış
+
         if order_id:
             self.setWindowTitle("Sipariş Düzenle")
             self.load_order_data()
         else:
             self.setWindowTitle("Yeni Sipariş")
-            self.load_products()  # İlk kategori için ürünleri yükle
+            self.load_products()
     
     def load_customers(self):
         """Müşterileri combobox'a yükle"""
@@ -87,7 +83,6 @@ class OrderDialog(QtWidgets.QDialog):
         conn = database.create_connection()
         c = conn.cursor()
         try:
-            # Sipariş bilgilerini al
             c.execute("""
                 SELECT kullanici_id FROM faturalar WHERE id=?
             """, (self.order_id,))
@@ -95,12 +90,10 @@ class OrderDialog(QtWidgets.QDialog):
             
             if order:
                 customer_id = order[0]
-                # Müşteri seçimi
                 index = self.ui.comboBox_customer.findData(customer_id)
                 if index >= 0:
                     self.ui.comboBox_customer.setCurrentIndex(index)
                 
-                # Sipariş ürünlerini al
                 c.execute("""
                     SELECT fu.urun_id, u.ad, u.fiyat, fu.adet
                     FROM fatura_urunler fu
@@ -109,11 +102,9 @@ class OrderDialog(QtWidgets.QDialog):
                 """, (self.order_id,))
                 items = c.fetchall()
                 
-                # Sipariş listesini temizle
                 self.order_items.clear()
                 self.ui.tableWidget_order.setRowCount(0)
                 
-                # Sipariş ürünlerini ekle
                 for item in items:
                     product_id, name, price, quantity = item
                     total = price * quantity
@@ -134,7 +125,6 @@ class OrderDialog(QtWidgets.QDialog):
         quantity = self.ui.spinBox_quantity.value()
         total = price * quantity
         
-        # Eğer ürün zaten listede varsa, adeti artır
         for i, item in enumerate(self.order_items):
             if item[0] == product_id:
                 new_quantity = item[3] + quantity
@@ -143,7 +133,6 @@ class OrderDialog(QtWidgets.QDialog):
                 self.update_order_table()
                 return
         
-        # Yeni ürün ekle
         self.order_items.append((product_id, name, price, quantity, total))
         self.update_order_table()
     
@@ -173,52 +162,41 @@ class OrderDialog(QtWidgets.QDialog):
     
     def accept(self):
         """Diyalog kabul edildiğinde (OK butonuna basıldığında) çağrılır"""
-        # Sipariş boş mu kontrol et
         if not self.order_items:
             QtWidgets.QMessageBox.warning(self, "Hata", "Sipariş listesi boş olamaz!")
             return
             
-        # Müşteri seçildi mi kontrol et
         customer_id = self.ui.comboBox_customer.currentData()
         if not customer_id:
             QtWidgets.QMessageBox.warning(self, "Hata", "Lütfen bir müşteri seçin!")
             return
         
-        # Toplam tutarı hesapla
         total_amount = sum(item[4] for item in self.order_items)
         
-        # Veritabanı işlemleri
         conn = database.create_connection()
         c = conn.cursor()
         try:
-            if self.order_id:  # Düzenleme modu
-                # Önce eski sipariş ürünlerini sil
+            if self.order_id:
                 c.execute("DELETE FROM fatura_urunler WHERE fatura_id=?", (self.order_id,))
-                
-                # Faturayı güncelle
                 c.execute("""
                     UPDATE faturalar 
                     SET kullanici_id=?, toplam_tutar=? 
                     WHERE id=?
                 """, (customer_id, total_amount, self.order_id))
                 
-                # Yeni sipariş ürünlerini ekle
                 for product_id, _, _, quantity, _ in self.order_items:
                     c.execute("""
                         INSERT INTO fatura_urunler (fatura_id, urun_id, adet) 
                         VALUES (?, ?, ?)
                     """, (self.order_id, product_id, quantity))
-            else:  # Yeni sipariş oluşturma modu
-                # Fatura oluştur
+            else:
                 c.execute("""
                     INSERT INTO faturalar (kullanici_id, toplam_tutar) 
                     VALUES (?, ?)
                 """, (customer_id, total_amount))
                 
-                # Oluşturulan faturanın ID'sini al
                 fatura_id = c.lastrowid
-                
-                # Sipariş ürünlerini ekle
+
                 for product_id, _, _, quantity, _ in self.order_items:
                     c.execute("""
                         INSERT INTO fatura_urunler (fatura_id, urun_id, adet) 
@@ -226,7 +204,7 @@ class OrderDialog(QtWidgets.QDialog):
                     """, (fatura_id, product_id, quantity))
             
             conn.commit()
-            super().accept()  # Diyaloğu kapat
+            super().accept()
             
         except sqlite3.Error as e:
             QtWidgets.QMessageBox.warning(self, "Hata", f"Veritabanı hatası: {str(e)}")
